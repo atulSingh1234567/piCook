@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  box-sizing: border-box;
+}
+
+.homepage-container{
+  flex: 1;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill , 265px);
+  grid-auto-rows:8px;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.card{
+  margin: 12px;
+  border-radius: 12px;
+}
+
+.card.small{
+  grid-row-end: span 20;
+  overflow: hidden;
+}
+
+.card.medium{
+  grid-row-end: span 35;
+  overflow: hidden;
+}
+
+.card.large{
+  grid-row-end: span 47;
+  overflow: hidden;
+} 
+
+/* grid responsiveness */
+@media screen and (max-width: 800px) {
+
+  .homepage-container{
+    flex: 1;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , 250px);
+    grid-auto-rows:5px;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .card.small{
+    grid-row-end: span 28;
+    background-color: blue;
+    overflow: hidden;
+  }
+  
+  .card.medium{
+    grid-row-end: span 35;
+    overflow: hidden;
+  }
+  
+  .card.large{
+    grid-row-end: span 66;
+    background-color: black;
+    overflow: hidden;
+  } 
+  
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .homepage-container{
+    flex: 1;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , 50%);
+    grid-auto-rows:5px;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .card.small{
+    grid-row-end: span 22;
+    background-color: blue;
+    overflow: hidden;
+  }
+  
+  .card.medium{
+    grid-row-end: span 35;
+    overflow: hidden;
+  }
+  
+  .card.large{
+    grid-row-end: span 50;
+    background-color: red;
+    overflow: hidden;
+  } 
+}
