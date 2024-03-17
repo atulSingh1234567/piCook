@@ -5,6 +5,8 @@ import './index.css'
 import Homepage from './pages/homepage/Homepage'
 import Explore from './pages/explorepage/Explore'
 import ExploreAfter from './pages/explorepage/ExploreAfter'
+import Login from './components/login/Login'
+import Profile from './pages/profile/Profile'
 const router = createBrowserRouter([
   {
     path: '',
@@ -22,6 +24,18 @@ const router = createBrowserRouter([
       {
         path: 'explore/:description',
         element: <ExploreAfter />
+      },
+      {
+        path: 'login',
+        element: <Login operate='Log in' google='Continue' isSignup={false}/>
+      },
+      {
+        path: 'signup',
+        element: <Login operate='Continue' google='Sign up' isSignup={true}/>
+      },
+      {
+        path: 'profile',
+        element: <Profile />
       }
     ]
   }

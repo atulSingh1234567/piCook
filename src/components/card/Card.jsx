@@ -7,12 +7,12 @@ export default function Card({ url,description, height, width }) {
     return (
         <span onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className={`card ${height<width?'small': height==width? 'medium' : 'large'} cursor-pointer relative`}>
            {
-            hover ? <h1 className='flex z-20 text-center absolute bg-[red] right-4 p-1 rounded-full max-[500px]:text-sm text-white text-lg font-semibold top-2'>Send</h1> : ''
+            hover ? <h1 className='flex z-20 text-center absolute bg-[red] right-4 p-1 rounded-full max-[500px]:text-sm text-white text-lg font-semibold top-2'>Save</h1> : ''
            }
            {
             hover ? <div className='h-full absolute opacity-70 bg-black w-full'></div> : ''
            }
-           <img src={url} alt={description} className="rounded-xl" />
+           <img src={url} alt={description} className="rounded-xl object-cover" />
            {
             hover ? <h1 className='absolute bg-white z-20 px-1 top-3 rounded-full left-4'><DownloadIcon/></h1> : ''
            }
