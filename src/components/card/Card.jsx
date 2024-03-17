@@ -5,7 +5,7 @@ export default function Card({ url,description, height, width }) {
     const [hover , setHover] = useState(false)
 
     return (
-        <span onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className={`card ${height<width?'small': height==width? 'medium' : 'large'} relative`}>
+        <span onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className={`card ${height<width?'small': height==width? 'medium' : 'large'} cursor-pointer relative`}>
            {
             hover ? <h1 className='flex z-20 text-center absolute bg-[red] right-4 p-1 rounded-full max-[500px]:text-sm text-white text-lg font-semibold top-2'>Send</h1> : ''
            }

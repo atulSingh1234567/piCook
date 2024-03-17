@@ -4,6 +4,7 @@ import Layout from './Layout'
 import './index.css'
 import Homepage from './pages/homepage/Homepage'
 import Explore from './pages/explorepage/Explore'
+import ExploreAfter from './pages/explorepage/ExploreAfter'
 const router = createBrowserRouter([
   {
     path: '',
@@ -13,9 +14,14 @@ const router = createBrowserRouter([
         path: '/',
         element: <Homepage />
       },
+
       {
-        path: '/explore',
+        path: 'explore',
         element: <Explore />
+      },
+      {
+        path: 'explore/:description',
+        element: <ExploreAfter />
       }
     ]
   }
