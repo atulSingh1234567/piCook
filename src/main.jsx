@@ -7,6 +7,23 @@ import Explore from './pages/explorepage/Explore'
 import ExploreAfter from './pages/explorepage/ExploreAfter'
 import Login from './components/login/Login'
 import Profile from './pages/profile/Profile'
+import SettingsLayout from './pages/settings/SettingsLayout.jsx'
+import EditProfile from './pages/settings/EditProfile.jsx'
+import ExploreForNot from './pages/explorepage/ExploreForNot.jsx'
+import Pinpage from './pages/pin/Pinpage.jsx'
+
+
+const editProfile = {
+  for: 'Edit Profile',
+  isFor: true,
+  input: 'username'
+}
+const manageAcc = {
+  for: 'Account management',
+  isFor: false,
+  input: 'password'
+}
+
 const router = createBrowserRouter([
   {
     path: '',
@@ -36,7 +53,34 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />
+      },
+      {
+        path: 'settings',
+        element: <SettingsLayout />,
+        children: [
+          {
+            path: '',
+            element: <EditProfile pageFor={editProfile}/>
+          },
+          {
+            path: 'manage your account',
+            element: <EditProfile pageFor={manageAcc}/>
+          }
+        ]
+      },
+      {
+        path: 'today',
+        element: <Explore />
+      },
+      {
+        path: 'ideas',
+        element: <ExploreForNot />
+      },
+      {
+        path: 'pin/:uId',
+        element: <Pinpage />
       }
+      
     ]
   }
 ])

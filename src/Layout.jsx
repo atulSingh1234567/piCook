@@ -6,6 +6,7 @@ import { AuthContextProvider } from './contexts/Auth.jsx'
 
 export default function Layout() {
   const [isLoggedIn,setIsLoggedIn] = useState(false)
+  
   return (
     <AuthContextProvider>
     <MyContextProvider value={{isLoggedIn , setIsLoggedIn}}>

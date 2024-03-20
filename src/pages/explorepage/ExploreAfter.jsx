@@ -17,9 +17,9 @@ export default function ExploreAfter() {
     ]
     return (
         <div className='relative justify-center items-center flex gap-8 flex-col w-full top-20'>
-            <div className=' w-[45%] rounded-xl max-h-[50vh] relative border flex justify-center rounded-xl overflow-hidden'>
+            <div className='min-w-[350px] w-[45%] bg-rose-400 rounded-xl max-h-[50vh] relative border flex justify-center rounded-xl overflow-hidden'>
                 <img src={p.url} alt={p.description} className='obejct-cover'/>
-                <h1 className='absolute text-white text-2xl w-[35%] text-center bottom-4'>{p.description}</h1>
+                <h1 className='absolute text-white text-2xl w-full  text-center bottom-4'>{p.description}</h1>
             </div>
             <div className='homepage-container w-full px-2'>
                 {

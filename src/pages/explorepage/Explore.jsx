@@ -23,10 +23,10 @@ export default function Explore() {
   return (
     <div className='w-full relative top-20 flex gap-2 flex-col'>
       <h1 className='text-2xl h-20 flex items-center justify-center text-center'>{presentDay}</h1>
-    <div className='explore-container'>
+    <div className='flex justify-center flex-wrap gap-4'>
       {
         category.map(function(item,index){
-              return <Category item={item} />
+              return <Category key={index} item={item} />
         })
       }
     </div>

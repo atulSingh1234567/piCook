@@ -5,7 +5,9 @@ import { useContext , createContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
 export const  AuthContextProvider = ({children})=>{
-    const [user , setUser] = useState({})
+    const [user , setUser] = useState({});
+    const [photoBox , setPhotoBox] = useState(false)
+    const [image , setImage] = useState('')
     const googleSignIn =  ()=>{
         const Provider = new GoogleAuthProvider();
         signInWithPopup(auth , Provider)
@@ -26,7 +28,7 @@ export const  AuthContextProvider = ({children})=>{
         },[]
     )
 
-    return <AuthContext.Provider value={{googleSignIn,user,logOut}}>
+    return <AuthContext.Provider value={{googleSignIn,user,image,setImage,setPhotoBox,photoBox,logOut}}>
         {children}
     </AuthContext.Provider>
 }

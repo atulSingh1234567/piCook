@@ -28,6 +28,7 @@ export default function Profile() {
         }
     }
   return (
+    
     <div className='flex w-full flex-col items-center relative top-20'>
       <div className='flex flex-col items-center'>
         <img src={user.photoURL} alt="" className='rounded-full p-4' />
@@ -35,7 +36,7 @@ export default function Profile() {
         <p>@sahajkrish7</p>
         <p>0 followers</p>
         <div className='flex gap-2'>
-        <button className='mt-4 bg-gray-300 p-2 rounded-xl'>Edit Profile</button>
+        <button onClick={()=> navigate('/settings')} className='mt-4 bg-gray-300 p-2 rounded-xl'>Edit Profile</button>
         <button onClick={handleLogOut} className='mt-4 bg-gray-300 p-2 rounded-xl'>Log out</button>
         </div>
       </div>
@@ -51,5 +52,6 @@ export default function Profile() {
             
         </div>
     </div>
+    
   )
 }

@@ -11,6 +11,13 @@ html{
   scroll-behavior: smooth;
 }
 
+input:invalid:required:focus {
+  border-color: red;
+}
+input:invalid:focus {
+  border-color: red;
+}
+
 .homepage-container{
   flex: 1;
   height: auto;
@@ -98,24 +105,6 @@ html{
     background-color: red;
     overflow: hidden;
   } 
-}
-
-/* explore container grid layout */
-.explore-container{
-  flex: 1;
-  height: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill , 30%);
-  grid-auto-rows:10px;
-  justify-content: center;
-  overflow-x: hidden;
-}
-
-.category-card{
-  grid-row-end: span 36;
-  margin: 8px;
-  border-radius: 12px;
-  overflow: hidden;
 }
 
 .landing-text{
