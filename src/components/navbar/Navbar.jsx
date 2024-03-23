@@ -16,7 +16,7 @@ export default function Navbar() {
     <>
       <div className='flex fixed max-[450px]:gap-4 max-[450px]:px-12 text-gray-600 z-30 bg-white w-full justify-between px-14 items-center h-20'>
         <Link to='/'>
-        <span className='text-2xl max-[829px]:text-lg text-black font-bold'>
+        <span className='text-2xl max-[829px]:text-lg font-bold text-[red]'>
           piCOOk
         </span>
         </Link>

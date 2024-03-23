@@ -18,6 +18,7 @@ input:invalid:focus {
   border-color: red;
 }
 
+
 .homepage-container{
   flex: 1;
   height: auto;

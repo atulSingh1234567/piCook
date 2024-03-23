@@ -35,9 +35,9 @@ export default function Pinpage() {
                     Lorem ipsum dolor sit amet.
                 </div>
                 <div className='flex items-center w-full gap-4'>
-                    <img src={user.photoURL} alt="" className='w-12 h-12 rounded-full'/>
+                    <img src={user?.photoURL} alt="" className='w-12 h-12 rounded-full'/>
                     <span className='text-sm'>
-                        <h1>{user.displayName}</h1>
+                        <h1>{user?.displayName}</h1>
                         <h1>1233 followers</h1>
                     </span>
                 </div>
