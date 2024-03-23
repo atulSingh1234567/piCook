@@ -6,12 +6,12 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 export default function Login({isSignup , operate, google}) {
   const [show , setShow] = useState(false)
-    const {googleSignIn,user} = useAuthContext()
+    const {googleSignIn} = useAuthContext()
     const navigate = useNavigate()
     const handleGoogleSignIn = async ()=>{
         try{
            await googleSignIn()
-           if(user) navigate('/')
+           navigate('/')
         }catch(error){
 
         }
