@@ -11,18 +11,8 @@ import SettingsLayout from './pages/settings/SettingsLayout.jsx'
 import EditProfile from './pages/settings/EditProfile.jsx'
 import ExploreForNot from './pages/explorepage/ExploreForNot.jsx'
 import Pinpage from './pages/pin/Pinpage.jsx'
+import ManageAccount from './pages/settings/ManageAccount.jsx'
 
-
-const editProfile = {
-  for: 'Edit Profile',
-  isFor: true,
-  input: 'username'
-}
-const manageAcc = {
-  for: 'Account management',
-  isFor: false,
-  input: 'password'
-}
 
 const router = createBrowserRouter([
   {
@@ -44,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login operate='Log in' google='Continue' isSignup={false}/>
+        element: <Login operate='Login' google='Continue' isSignup={false}/>
       },
       {
         path: 'signup',
@@ -59,12 +49,12 @@ const router = createBrowserRouter([
         element: <SettingsLayout />,
         children: [
           {
-            path: '',
-            element: <EditProfile pageFor={editProfile}/>
+            path: 'edit profile',
+            element: <EditProfile/>
           },
           {
             path: 'manage your account',
-            element: <EditProfile pageFor={manageAcc}/>
+            element: <ManageAccount/>
           }
         ]
       },

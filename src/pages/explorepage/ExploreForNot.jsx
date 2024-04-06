@@ -14,7 +14,7 @@ export default function ExploreForNot() {
         navigate(`/explore/${item}`)
     }
     return (
-        <div className='w-full flex gap-8 flex-col items-center relative top-20'>
+        <div className='w-full h-screen pb-12 flex gap-8 flex-col items-center relative top-20'>
             <h1 className='max-w-fit font-semibold text-[40px]'>Explore the best</h1>
             <div className='flex gap-2 justify-center max-w-fit'>
                 {

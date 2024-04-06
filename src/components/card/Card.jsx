@@ -12,7 +12,7 @@ export default function Card({ url,description, height, width }) {
 
     return (
 
-        <span onClick={gotoPin} onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className={`card ${height<width?'small': height==width? 'medium' : 'large'} cursor-pointer relative`}>
+        <span onClick={gotoPin} onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className={`card ${height<width?'small': height==width? 'medium' : 'large'} cursor-pointer bg-gray-300 relative`}>
          
            {
             hover ? <h1 className='flex z-20 text-center absolute bg-[red] right-4 p-1 rounded-full max-[500px]:text-sm text-white text-lg font-semibold top-2'>Save</h1> : ''

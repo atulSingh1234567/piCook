@@ -101,11 +101,11 @@ export default function Landing() {
                     <motion.div variants={variants} initial='initial' animate='animate' className='flex absolute left-[-100px] justify-between gap-4 overflow-hidden h-[48vh] w-[48%]'>
                         {
                             img.map(function (item, index) {
-                                return <motion.span variants={variants}> <motion.img className='h-[85%] object-cover rounded-xl' src={item} alt="" />
+                                return <motion.span key={index} variants={variants}> <motion.img className='h-[85%] object-cover rounded-xl' src={item} alt="" />
                                 </motion.span>
                             })
                         }
-                        <motion.div variants={variants} class="absolute top-20 left-0 w-full h-full bg-gradient-to-b from-transparent via-white to-white"></motion.div>
+                        <motion.div variants={variants} className="absolute top-20 left-0 w-full h-full bg-gradient-to-b from-transparent via-white to-white"></motion.div>
                     </motion.div>
                     <a href='#second'>
                     <motion.div variants={arrowVariants} animate='animate' initial='initial' className='w-[20%] my-20 relative bottom-0'>
@@ -120,7 +120,7 @@ export default function Landing() {
                                 )
                             })
                         }
-                        <motion.div variants={variants} class="absolute top-16 left-0 w-full h-full bg-gradient-to-b from-transparent via-white to-white"></motion.div>
+                        <motion.div variants={variants} className="absolute top-16 left-0 w-full h-full bg-gradient-to-b from-transparent via-white to-white"></motion.div>
                     </motion.div>
                     
                 </div>

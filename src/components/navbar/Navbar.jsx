@@ -5,7 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAuthContext } from '../../contexts/Auth';
 import FeatureCard from '../featureCard/FeatureCard';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 export default function Navbar() {
   const {user} = useAuthContext();
   const [isShow , setIsShow] = useState(false)
@@ -36,7 +36,11 @@ export default function Navbar() {
 
       { user ?  <span className='w-[10%] relative flex justify-between'>
           <i className='max-[500px]:hidden'> <NotificationsIcon /> </i>
-          <Link to='/profile' className='w-8 f-8 rounded-full overflow-hidden'><img src={user.photoURL} alt="" className='max-[600px]:hidden'/></Link>
+          <Link to='/profile' className='w-8 f-8 rounded-full overflow-hidden'>
+            {user.avatar ? <img src={user.avatar} alt="" className='max-[600px]:hidden w-16 h-8'/>
+             : <span className='font-semibold rounded-full min-w-4 min-h-4 bg-gray-100'><AccountCircleIcon/></span>
+             }
+            </Link>
           <i onClick={showFeatureCard} className='cursor-pointer'><KeyboardArrowDownIcon className='bg-gray-100 rounded-full' /></i>
           {
             isShow ? <div className='absolute right-[-60px] top-12'> <FeatureCard /> </div>: ''
