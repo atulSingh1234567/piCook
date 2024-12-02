@@ -12,7 +12,9 @@ import EditProfile from './pages/settings/EditProfile.jsx'
 import ExploreForNot from './pages/explorepage/ExploreForNot.jsx'
 import Pinpage from './pages/pin/Pinpage.jsx'
 import ManageAccount from './pages/settings/ManageAccount.jsx'
-
+import Post from './pages/postPhotoPage/Post.jsx'
+import Saved from './pages/profile/Saved.jsx'
+import CreatedPin from './pages/profile/CreatedPin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -42,7 +44,21 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <Profile />
+        element: <Profile />,
+        children: [
+          {
+            path: '',
+            element: <Saved />
+          },
+          {
+            path: 'saved',
+            element: <Saved />
+          },
+          {
+            path: 'created-pin',
+            element: <CreatedPin />
+          }
+        ]
       },
       {
         path: 'settings',
@@ -69,12 +85,16 @@ const router = createBrowserRouter([
       {
         path: 'pin/:uId',
         element: <Pinpage />
+      },
+      {
+        path: 'create-your-pin',
+        element: <Post />
       }
-      
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}></RouterProvider>
+  <RouterProvider router={router}>
+  </RouterProvider>
 )

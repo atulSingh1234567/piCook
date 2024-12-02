@@ -4,7 +4,6 @@ import Navbar from './components/navbar/Navbar.jsx'
 import { AuthContextProvider, useAuthContext } from './contexts/Auth.jsx'
 
 export default function Layout() {
-  
   return (
     <AuthContextProvider>
     

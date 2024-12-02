@@ -1,42 +1,22 @@
 import React from 'react'
 import { useAuthContext } from '../../contexts/Auth'
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Card from '../../components/card/Card';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom';
 export default function Profile() {
-    const {user,setUser,logOut} = useAuthContext();
+    const {user,logOut} = useAuthContext();
     const navigate = useNavigate()
-    const imgStock = [{ url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-    { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-    { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-]
-
-    const handleLogOut = async ()=>{
-        
-        try {
-            await logOut();
-            Cookies.remove('accessToken');
-            window.location.href = '/'
-        } catch (error) {
-            console.log('could not log out! ', error)
-        }
+    const handleLogOut =()=>{
+      logOut()
     }
 
 
   return (
     
     <div className='flex w-full flex-col items-center relative top-20'>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col relative items-center'>
         
         {
             user?.avatar ? <img src={user?.avatar} alt="" className='rounded-full w-40 h-40 p-4' /> : <AccountCircleIcon className='min-w-28 min-h-28'/>
@@ -48,17 +28,14 @@ export default function Profile() {
         <button onClick={()=> navigate('/settings/edit profile')} className='mt-4 bg-gray-300 p-2 rounded-xl'>Edit Profile</button>
         <button onClick={handleLogOut} className='mt-4 bg-gray-300 p-2 rounded-xl'>Log out</button>
         </div>
+        <button onClick={()=>navigate('/create-your-pin')} className='rounded-full flex fixed z-10 right-4 items-center justify-center w-12 h-12 p-2 font-bold text-2xl bg-gray-300'>+</button>
       </div>
-      <div className='homepage-container w-full relative px-2 top-20'>
-            {
-                imgStock.map(function (item, index) {
-                    return (
-                        <Card key={index} url={item.url} height={item.height} width={item.width} />
-                    )
-
-                })
-            }
-            
+      <ul className='text-xl mt-4 text-red-500 flex gap-4'>
+        <NavLink to='/profile/saved' className={({isActive})=>(`${isActive? 'underline rounded-full font-bold':'text-red-500'}`)}>Saved</NavLink>
+        <NavLink to='/profile/created-pin' className={({isActive})=>(`${isActive? 'underline rounded-full font-bold':'text-red-500'}`)}>Created Pin</NavLink>
+      </ul>
+      <div className='w-full px-2 mt-8'>
+           <Outlet />
         </div>
     </div>
     

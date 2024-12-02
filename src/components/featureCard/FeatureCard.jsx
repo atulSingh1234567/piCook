@@ -9,8 +9,6 @@ export default function FeatureCard() {
         
       try {
           await logOut();
-          Cookies.remove('accessToken');
-          window.location.href = '/'
       } catch (error) {
           console.log('could not log out! ', error)
       }

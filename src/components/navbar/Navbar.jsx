@@ -6,12 +6,17 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAuthContext } from '../../contexts/Auth';
 import FeatureCard from '../featureCard/FeatureCard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
 export default function Navbar() {
   const {user} = useAuthContext();
   const [isShow , setIsShow] = useState(false)
   const showFeatureCard = ()=>{
         setIsShow(prev => !prev)
   }
+
+
+
   return (
     <>
       <div className='flex fixed max-[450px]:gap-4 max-[450px]:px-12 text-gray-600 z-30 bg-white w-full justify-between px-14 items-center h-20'>

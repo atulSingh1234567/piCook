@@ -1,50 +1,40 @@
-import { signInWithPopup, GoogleAuthProvider , signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../components/login/firebase.config.js";
 import { useContext , createContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import axios from 'axios'
-
 const AuthContext = createContext();
 
 export const  AuthContextProvider = ({children})=>{
-    const [user , setUser] = useState({});
+    const [user , setUser] = useState();
     const [photoBox , setPhotoBox] = useState(false)
     const [error , setError] = useState({})
     const [image , setImage] = useState('')
-    const googleSignIn =  ()=>{
-        const Provider = new GoogleAuthProvider();
-        signInWithPopup(auth , Provider)
-    }
-
+    const [showLoader, setShowLoader] = useState(false)
     const logOut = ()=>{
-        signOut(auth)
+        try {
+            setUser(null)
+            localStorage.removeItem('user')
+            Cookies.remove('accessToken')
+            window.location.href = '/login'
+        } catch (error) {
+            console.log('could not log out! ', error)
+        }
     }
-
     useEffect(
         ()=>{
-            const unsub = onAuthStateChanged(auth , (authUser)=>{
-                setUser(authUser);
-                console.log(authUser)
-            })
-
-            const accessToken = Cookies.get('accessToken');
-            axios.post('http://localhost:8000/api/v1/users/fetch-user' , {
-                accessToken
-            })
-            .then(
-                res => {console.log(res)
-                setUser(res.data)}
-            )
-            .catch(
-                err => console.log(err)
-            )
-
-            return ()=>unsub();
+            const accessToken = Cookies.get('accessToken')
+            if(accessToken){
+                const user = JSON.parse(localStorage.getItem('user'))
+                setUser(user);
+            }
+            else{
+                localStorage.removeItem('user')
+            }
         },[]
     )
 
-    return <AuthContext.Provider value={{googleSignIn,error,setError,user,setUser,image,setImage,setPhotoBox,photoBox,logOut}}>
-        {children}
+    return <AuthContext.Provider value={{showLoader,setShowLoader,error,setError,user,setUser,image,setImage,setPhotoBox,photoBox,logOut}}>
+        {
+           children
+        }
     </AuthContext.Provider>
 }
 

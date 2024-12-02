@@ -16,17 +16,8 @@ export default function Login({ isSignup, operate, google }) {
     username: '',
     birth: ''
   })
-  const { googleSignIn, user, setUser, error, setError } = useAuthContext()
+  const {user, setUser, error, setError } = useAuthContext()
   const navigate = useNavigate()
-  const handleGoogleSignIn = async () => {
-
-    try {
-      await googleSignIn()
-      navigate('/')
-    } catch (error) {
-
-    }
-  }
 
   const handleInput = (e) => {
     const { name, value } = e.target
@@ -45,6 +36,7 @@ export default function Login({ isSignup, operate, google }) {
         .then(
           (res) => {
             setUser(res.data)
+            localStorage.setItem('user' , JSON.stringify(res.data));
             setError(res)
             setAlert(true)
             navigate('/')
@@ -70,10 +62,15 @@ export default function Login({ isSignup, operate, google }) {
           (res) => {
             setUser(res.data.data)
             setError(res)
-            console.log(res)
             Cookies.set('accessToken',res.data.accessToken)
+            Cookies.set('refreshToken', res.data.refreshToken)
+            localStorage.setItem('user' , JSON.stringify(res.data.data));
             setAlert(true)
-            navigate('/login')
+            setTimeout(
+              ()=>{
+                navigate('/')
+              },2000
+            )
           }
         )
         .catch(
@@ -85,9 +82,6 @@ export default function Login({ isSignup, operate, google }) {
       console.log("could not log in! sorry", error)
     }
   }
-
-  
-  console.log(user)
 
   return (
     <form onSubmit={isSignup ? postToDB : Login} className='w-full flex justify-center'>
@@ -129,11 +123,6 @@ export default function Login({ isSignup, operate, google }) {
           </span>
           }
           <button type='submit' className='w-full bg-[red] text-lg text-white h-12 rounded-full'>{operate}</button>
-        </div>
-        <span className='text-[20px]'>OR</span>
-        <div onClick={handleGoogleSignIn} className='border border-gray-400 cursor-pointer h-12 flex gap-2 px-16 rounded-full items-center'>
-          <button className='bg-white text-[green]'><GoogleIcon /></button>
-          <p>{google} with google</p>
         </div>
       </div>
     </form>

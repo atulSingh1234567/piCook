@@ -76,7 +76,7 @@ export default function ManageAccount() {
                         <h1 className='font-semibold'>Delete your data and account</h1>
                         <p className='w-full'>Permanently delete your data and everything associated with your account</p>
                     </div>
-                    <button className='bg-gray-400 rounded-xl text-white px-4 h-[40px]'>Delete</button>
+                    <button  className='bg-gray-400 rounded-xl text-white px-4 h-[40px]'>Delete</button>
                 </div>
             </div>
         </form>
