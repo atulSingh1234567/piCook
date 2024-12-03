@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useAuthContext } from '../../contexts/Auth'
-import GoogleIcon from '@mui/icons-material/Google';
 import { useNavigate } from 'react-router-dom';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import axios from 'axios'
-import { Alert, AlertTitle,Stack } from '@mui/material';
 import Cookies from 'js-cookie';
+import {Toaster,toast} from 'react-hot-toast'
+import Loader from '../loader/Loader';
 
 export default function Login({ isSignup, operate, google }) {
   const [show, setShow] = useState(false)
@@ -16,7 +16,7 @@ export default function Login({ isSignup, operate, google }) {
     username: '',
     birth: ''
   })
-  const {user, setUser, error, setError } = useAuthContext()
+  const {showLoader, setShowLoader, setUser, setError } = useAuthContext()
   const navigate = useNavigate()
 
   const handleInput = (e) => {
@@ -29,17 +29,20 @@ export default function Login({ isSignup, operate, google }) {
   }
 
   const postToDB = (e) => {
+    setShowLoader(true)
     e.preventDefault()
     console.log('inside continue function')
     try {
       axios.post('http://localhost:8000/api/v1/users/register-user', details)
         .then(
           (res) => {
-            setUser(res.data)
-            localStorage.setItem('user' , JSON.stringify(res.data));
-            setError(res)
-            setAlert(true)
-            navigate('/')
+            setShowLoader(false)
+            toast.success(res.data.message)
+            setTimeout(
+              ()=>{
+                window.location.href = '/login'
+              },1000
+            )
           }
         )
         .catch(
@@ -56,10 +59,12 @@ export default function Login({ isSignup, operate, google }) {
 
   const Login = function (e) {
     e.preventDefault()
+    setShowLoader(true)
     try {
       axios.post('http://localhost:8000/api/v1/users/login', details )
         .then(
           (res) => {
+            setShowLoader(false)
             setUser(res.data.data)
             setError(res)
             Cookies.set('accessToken',res.data.accessToken)
@@ -85,13 +90,10 @@ export default function Login({ isSignup, operate, google }) {
 
   return (
     <form onSubmit={isSignup ? postToDB : Login} className='w-full flex justify-center'>
-    { alert ? <Stack sx={{ width: '100%', position: 'fixed',zIndex: '1', top: '80px' }} spacing={2}>
-      <Alert severity={`${error?.status>=200 && error.status<=298? 'success' : 'error'}`} onClose={()=>{setAlert(false)}}>
-        <AlertTitle>{error?.status}</AlertTitle>
-        {error?.statusText}
-      </Alert>
-    </Stack> : ''
-}
+      <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                />
       <div className='flex flex-col relative top-20 shadow-lg shadow-gray w-[35%] h-screen gap-6 justify-center py-8 rounded-xl items-center bg-white'>
         <div className='flex flex-col items-center'>
           <h1 className='text-3xl font-semibold'>Welcome to piCooK</h1>
@@ -122,7 +124,7 @@ export default function Login({ isSignup, operate, google }) {
               type="date" name='birth' placeholder='birth' className='min-w-[100px] px-4 rounded-full h-[50px] w-[300px] border focus:outline outline-offset-1 outline-blue-500 outline-2' />
           </span>
           }
-          <button type='submit' className='w-full bg-[red] text-lg text-white h-12 rounded-full'>{operate}</button>
+          <button type='submit' className='w-full bg-[red] text-lg text-white h-12 rounded-full'>{showLoader?<Loader />:operate}</button>
         </div>
       </div>
     </form>

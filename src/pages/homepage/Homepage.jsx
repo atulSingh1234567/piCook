@@ -1,26 +1,26 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import Card from '../../components/card/Card';
-
 import Landing from '../landing/Landing';
 import { useAuthContext } from '../../contexts/Auth';
-
+import Cookies from 'js-cookie'
+import axios from 'axios';
 export default function Homepage() {
     const { user } = useAuthContext()
-    const imgStock = [{ url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' }
-        , { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-    { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-    { url: 'https://www.looper.com/img/gallery/every-power-rangers-series-explained/intro-1681980970.jpg', height: 300, width: 400, description: '' },
-    { url: 'https://m.media-amazon.com/images/M/MV5BMTA5MzU1NDI4NzBeQTJeQWpwZ15BbWU4MDUxMDQ0NDEy._V1_SL1024_.jpg', height: 400, width: 300, description: '' },
-]
+    const [imgStock,setImgStock] = useState([]);
+    useEffect(
+        ()=>{
+           const accessToken = Cookies.get('accessToken')
+           if(accessToken){
+            axios.get('http://localhost:8000/api/v1/photos/send-photo')
+            .then(
+                (res)=>{
+                    setImgStock(res.data.photo)
+                }
+            )
+           }
+        },[]
+    )
 
-console.log(user)
     return (
         <>
     {
@@ -28,7 +28,7 @@ console.log(user)
             {
                 imgStock.map(function (item, index) {
                     return (
-                        <Card key={index} url={item.url} height={item.height} width={item.width} />
+                        <Card props = {item} />
                     )
 
                 })

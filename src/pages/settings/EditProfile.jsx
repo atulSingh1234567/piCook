@@ -57,7 +57,7 @@ export default function EditProfile() {
         </div>
         <div className='flex items-center flex-col gap-4'>
           <div className='flex items-center gap-8'>
-            <img src={user.avatar} alt="profile" className='rounded-full w-24 h-24 bg-gray-300' />
+            <img src={user?.avatar} alt="profile" className='rounded-full w-24 h-24 bg-gray-300' />
             <button onClick={() => setPhotoBox(true)} className='bg-gray-400 rounded-xl text-white px-4 h-[40px]'>Change</button>
           </div>
           <div className={`flex gap-2 ${photoBox ? 'text-gray-300' : ''}`}>

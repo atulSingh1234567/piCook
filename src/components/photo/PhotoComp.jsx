@@ -26,6 +26,7 @@ export default function PhotoComp() {
       .then(
         (res) => {
             setUser(res.data.user);
+            localStorage.setItem('user' , JSON.stringify(res.data.user))
             setTimeout(
               ()=>{
                 navigate('/')

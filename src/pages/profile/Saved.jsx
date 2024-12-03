@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { useAuthContext } from '../../contexts/Auth'
+import Card from '../../components/card/Card'
 
 export default function Saved() {
-    const {user} = useAuthContext()
-    const [savedPhoto , setSavedPhoto] = useState([])
+    const {savedPhotoByUser} = useAuthContext()
+    
   return (
-    <div>
+    <div className='homepage-container'>
       {
-        savedPhoto
+        savedPhotoByUser?.map(function(item){
+          return <Card props={item}/>
+        })
       }
     </div>
   )

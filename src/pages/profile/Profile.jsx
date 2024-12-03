@@ -1,17 +1,34 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useAuthContext } from '../../contexts/Auth'
 import { Outlet, useNavigate } from 'react-router-dom';
 import Card from '../../components/card/Card';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'js-cookie';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 export default function Profile() {
-    const {user,logOut} = useAuthContext();
+    const {user,logOut,setSavedPhotoByUser} = useAuthContext();
     const navigate = useNavigate()
     const handleLogOut =()=>{
       logOut()
     }
 
+    useEffect(
+      ()=>{
+        const accessToken = Cookies.get('accessToken');
+        const user = JSON.parse(localStorage.getItem('user'))
+        const userId = user?._id
+        if(accessToken){
+          axios.post('http://localhost:8000/api/v1/photos/send-saved-photo' , {userId})
+          .then(
+            (res)=>{
+              setSavedPhotoByUser(res.data.photos)
+              console.log(res)
+            }
+          )
+        }
+      }, []
+    )
 
   return (
     
