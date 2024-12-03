@@ -12,8 +12,6 @@ export default function Pinpage() {
         }, []
     )
 
-    console.log(url)
-
     const showPrev = ()=>{
         setPhotoBox(true)
     }
@@ -31,7 +29,7 @@ export default function Pinpage() {
             <div className='w-1/2 p-6 gap-12 flex flex-col items-center'>
                 <div className='w-full flex justify-between'>
                    <GetAppIcon />
-                   <button onClick={()=>saveThePhoto(url.owner,url._id)} className='bg-[red] p-2 px-4 rounded-full text-white'>Save</button>
+                   <button onClick={()=>saveThePhoto(url._id)} className='bg-[red] p-2 px-4 rounded-full text-white'>Save</button>
                 </div>
                 <div className='w-full text-2xl font-semibold'>
                     {url.title}

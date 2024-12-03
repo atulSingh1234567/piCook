@@ -21,9 +21,10 @@ export const  AuthContextProvider = ({children})=>{
         }
     }
 
-    const saveThePhoto = (userId,photoId)=>{
+    const saveThePhoto = (photoId)=>{
         try {
             const accessToken = Cookies.get('accessToken');
+            const userId = JSON.parse(localStorage.getItem('user'))
             if(accessToken){
                 axios.post('http://localhost:8000/api/v1/photos/save-photo' , {userId,photoId,accessToken})
                 .then(
