@@ -1,7 +1,9 @@
 import { useContext , createContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from 'axios'
+
 const AuthContext = createContext();
+
 
 export const  AuthContextProvider = ({children})=>{
     const [user , setUser] = useState();
@@ -29,15 +31,15 @@ export const  AuthContextProvider = ({children})=>{
                 axios.post('http://localhost:8000/api/v1/photos/save-photo' , {userId,photoId,accessToken})
                 .then(
                     (res)=>{
-                        console.log(res);
+                        return res;
                     }
                 )
             }
             else{
-                console.log("lsakdfjlksdjf")
+                return {message: "Signup or login to save the image", result:401}
             }
         } catch (error) {
-            console.log(error)
+            return {message: "Check your connection"}
         }
     }
     useEffect(

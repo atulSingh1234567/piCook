@@ -36,6 +36,25 @@ export default function ManageAccount() {
         )
          
     }
+
+    const deleteUser = ()=>{
+        try {
+            const accessToken = Cookies.get('accessToken');
+            if(accessToken){
+                axios.post('http://localhost:8000/api/v1/users/delete-account' , {accessToken})
+                .then(
+                    (res)=>{
+                        localStorage.removeItem('user')
+                        Cookies.remove('accessToken')
+                        Cookies.remove('refreshToken')
+                        window.location.href = '/login'
+                    }
+                )
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <form onSubmit={postPassword} action="">
             { alert ? <Stack sx={{ width: '100%', position: 'fixed',zIndex: '1', top: '80px' }} spacing={2}>
@@ -76,7 +95,7 @@ export default function ManageAccount() {
                         <h1 className='font-semibold'>Delete your data and account</h1>
                         <p className='w-full'>Permanently delete your data and everything associated with your account</p>
                     </div>
-                    <button  className='bg-gray-400 rounded-xl text-white px-4 h-[40px]'>Delete</button>
+                    <button onClick={deleteUser}  className='bg-gray-400 rounded-xl text-white px-4 h-[40px]'>Delete</button>
                 </div>
             </div>
         </form>

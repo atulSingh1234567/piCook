@@ -40,7 +40,7 @@ export default function Post() {
                         setShowLoader(false)
                         toast.success(res.data.message)
                         setFile(null)
-                        setPhotoDetails(null)
+                        setPhotoDetails({})
                     }
                 )
         }

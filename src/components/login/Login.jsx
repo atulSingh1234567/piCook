@@ -60,6 +60,7 @@ export default function Login({ isSignup, operate, google }) {
   const Login = function (e) {
     e.preventDefault()
     setShowLoader(true)
+    
     try {
       axios.post('http://localhost:8000/api/v1/users/login', details )
         .then(
@@ -71,20 +72,21 @@ export default function Login({ isSignup, operate, google }) {
             Cookies.set('refreshToken', res.data.refreshToken)
             localStorage.setItem('user' , JSON.stringify(res.data.data));
             setAlert(true)
-            setTimeout(
-              ()=>{
-                navigate('/')
-              },2000
-            )
+            navigate('/')
           }
-        )
+                )
         .catch(
-          (err) => {setError(err.response)
+          (err) => {
+            setShowLoader(false)
+            toast.error(err.response.data.message)
+
             console.log(err.response)
                   setAlert(true)}
         )
     } catch (error) {
-      console.log("could not log in! sorry", error)
+      setShowLoader(false)
+      toast.error('Something went wront')
+
     }
   }
 

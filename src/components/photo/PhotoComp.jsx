@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useAuthContext } from '../../contexts/Auth';
 import axios from 'axios';
 export default function PhotoComp() {
-  const navigate = useNavigate();
+  
   const { setPhotoBox, setImage, image, user, setUser } = useAuthContext()
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -18,6 +18,7 @@ export default function PhotoComp() {
     const formData = new FormData();
     formData.append('file', image);
     formData.append('userId', user._id);
+    formData.append('publicId' , user?.avatarCloudinaryPublicId)
     axios.post('http://localhost:8000/api/v1/users/change-profile-photo', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -27,11 +28,7 @@ export default function PhotoComp() {
         (res) => {
             setUser(res.data.user);
             localStorage.setItem('user' , JSON.stringify(res.data.user))
-            setTimeout(
-              ()=>{
-                navigate('/')
-              }, 2000
-            )
+            setImage(null)
         }
       )
   };
@@ -48,8 +45,6 @@ export default function PhotoComp() {
           <AvatarEditor
             ref={(ref) => (editorRef = ref)}
             image={image}
-            width={250}
-            height={250}
             border={50}
             color={[255, 255, 255, 0.6]} // RGBA
             borderRadius={125}
