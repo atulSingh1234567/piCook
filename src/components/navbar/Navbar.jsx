@@ -27,7 +27,7 @@ export default function Navbar() {
         </Link>
        { user ? <span className='w-[10%] max-[829px]:hidden min-[830px]:gap-2 flex font-semibold justify-between'>
              <NavLink className={({ isActive }) => `${isActive ? 'bg-black w-fit px-2 py-1 rounded-xl text-white' : ''}`} to='/'>Home</NavLink>
-             <NavLink className={({ isActive }) => `${isActive ? 'bg-black w-fit px-2 py-1 rounded-xl text-white' : ''}`} to='/explore'>Explore</NavLink>
+             {/* <NavLink className={({ isActive }) => `${isActive ? 'bg-black w-fit px-2 py-1 rounded-xl text-white' : ''}`} to='/explore'>Explore</NavLink> */}
           </span> : <span className='w-[10%] flex font-semibold justify-between'>
           <NavLink className={({ isActive }) => `${isActive ? 'bg-black w-fit px-2 py-1 rounded-xl text-white' : ''}`} to='/today'>Today</NavLink>
              <NavLink className={({ isActive }) => `${isActive ? 'bg-black w-fit px-2 py-1 rounded-xl text-white' : ''}`} to='/ideas'>Explore</NavLink>

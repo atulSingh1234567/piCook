@@ -1,7 +1,6 @@
 import React,{useEffect} from 'react'
 import { useAuthContext } from '../../contexts/Auth'
 import { Outlet, useNavigate } from 'react-router-dom';
-import Card from '../../components/card/Card';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'js-cookie';
 import { NavLink } from 'react-router-dom';
@@ -23,7 +22,6 @@ export default function Profile() {
           .then(
             (res)=>{
               setSavedPhotoByUser(res.data.photos)
-              console.log(res)
             }
           )
         }

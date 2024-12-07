@@ -28,7 +28,7 @@ export default function Explore() {
   return (
     <div className='w-full relative top-20 flex gap-2 flex-col'>
       <h1 className='text-2xl h-20 flex items-center justify-center text-center'>{presentDay}</h1>
-      <div className='homepage-container w-full relative px-2 top-20'>
+      <div className='homepage-container w-full relative px-2'>
         {
           imgStock.map(function (item, index) {
             return <Card props={item} />

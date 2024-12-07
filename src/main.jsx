@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './Layout'
 import './index.css'
 import Homepage from './pages/homepage/Homepage'
@@ -15,6 +15,19 @@ import ManageAccount from './pages/settings/ManageAccount.jsx'
 import Post from './pages/postPhotoPage/Post.jsx'
 import Saved from './pages/profile/Saved.jsx'
 import CreatedPin from './pages/profile/CreatedPin.jsx'
+import Landing from './pages/landing/Landing.jsx'
+import Cookies from 'js-cookie'
+import HomepageOutlet from './pages/homepage/HomepageOutlet.jsx'
+const isLoggedIn = ()=>{
+  const user = Cookies.get('accessToken')
+  console.log(user)
+  if(user){
+    return <Homepage />
+  }
+  else return <Landing />
+}
+
+const element = isLoggedIn()
 
 const router = createBrowserRouter([
   {
@@ -23,7 +36,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Homepage />
+        element:<HomepageOutlet />,
       },
 
       {
@@ -76,7 +89,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'today',
-        element: <Explore />
+        element: <Homepage />
       },
       {
         path: 'ideas',

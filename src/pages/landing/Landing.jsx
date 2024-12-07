@@ -81,8 +81,9 @@ export default function Landing() {
     }
   
     return (
-        <div className='relative flex flex-col flex-1'>
-            <motion.section id='hero' className='h-[100vh] overflow-hidden relative flex flex-col items-center snap-center'>
+        <>
+        <div className='relative top-32 flex flex-col flex-1'>
+            <motion.section id='hero' className='min-h-[100vh] overflow-hidden relative flex flex-col items-center snap-center'>
                 <div className='bg-white w-[50%] rounded-full flex flex-col items-center'>
                     <h1 className='text-[60px] mt-36 font-semibold'>Get your next</h1>
                     <div className='overflow-hidden'>
@@ -126,7 +127,7 @@ export default function Landing() {
                 </div>
 
             </motion.section>
-            <section id='second' className='h-[100vh] flex bg-[#fffd92] snap-center overflow-hidden'>
+            <section id='second' className='min-h-[100vh] flex bg-[#fffd92] snap-center overflow-hidden'>
                 <div className='w-[50%] flex justify-center relative'>
                     <img src={secondLandingImg[0]} alt="" className='max-h-[40%] max-w-[40%] absolute rounded-[45px] right-32 top-[-34px] object-cover absolute top-4'/>
                     <img src={secondLandingImg[1]} alt="" className='max-h-[40%] rounded-[70px] absolute bottom-24 right-28 object-cover'/>
@@ -162,5 +163,6 @@ export default function Landing() {
                 </div>
             </section>
         </div>
+        </>
     )
 }
